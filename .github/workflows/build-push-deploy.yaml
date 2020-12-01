@@ -18,6 +18,8 @@ on:
   push:
     branches:
     - master
+    tags:
+    - v\d+\.\d+\.\d+
 
 env:
   PROJECT_ID: storymadesimple
@@ -28,6 +30,14 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+    - name: Set ENV
+      run: |- 
+        if [ ${GITHUB_REF##*/} = "master" ]; then 
+          echo "::set-env name=ENV::staging"
+        else 
+          echo "::set-env name=ENV::prod"
+        fi
+
     - name: Checkout
       uses: actions/checkout@v2
 
