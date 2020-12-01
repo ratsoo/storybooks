@@ -59,7 +59,7 @@ ssh: check-env
 		--zone=$(ZONE)
 
 ssh-cmd: check-env
-	gcloud compute ssh $(SSH_STRING)\
+	@gcloud compute ssh $(SSH_STRING)\
 		--project=$(PROJECT_ID) \
 		--zone=$(ZONE) \
 		--command="$(CMD)"
